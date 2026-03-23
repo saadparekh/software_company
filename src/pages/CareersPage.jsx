@@ -36,11 +36,42 @@ export default function CareersPage() {
     else setResumeFileName("No file chosen");
   };
 
-  const handleSubmit = (e) => {
+  // --- UPDATED HANDLESUBMIT ---
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting Form Data:", { ...formState, resume: resumeFileName });
-    alert("Form submitted (check console log).");
+    
+    // Yahan hum formState ke sath resume ka naam bhi bhej rahe hain
+    const dataToSend = { ...formState, resume: resumeFileName };
+
+    try {
+      const response = await fetch('https://mastekbackend.onrender.com/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Application Sent Successfully!");
+        // Form reset (Optional)
+        setFormState({
+            firstName: "", lastName: "", email: "",
+            contactPrefix: "+92", contactNumber: "",
+            jobTitle: "", message: ""
+        });
+        setResumeFileName("No file chosen");
+      } else {
+        alert("Failed to send application: " + data.message);
+      }
+    } catch (err) {
+      console.error("Submission Error:", err);
+      alert("Server is not responding. Please try again later.");
+    }
   };
+  // ----------------------------
 
   const stepVariants = {
     hidden: { opacity: 0, y: 30 },
