@@ -16,7 +16,7 @@ export default function AppointmentSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("https://mastekbackend.onrender.com/api/contact", {
+    const res = await fetch("https://mastek-backend-new.onrender.com/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

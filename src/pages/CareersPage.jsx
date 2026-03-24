@@ -61,7 +61,7 @@ export default function CareersPage() {
 
     try {
       const response = await fetch(
-        "https://mastekbackend.onrender.com/api/career",
+        "https://mastek-backend-new.onrender.com/api/career",
         {
           method: "POST",
           // Note: FormData ke sath Content-Type header manually nahi lagate
