@@ -14,7 +14,6 @@ export default function CareersPage() {
     firstName: "",
     lastName: "",
     email: "",
-    contactPrefix: "+92",
     contactNumber: "",
     jobTitle: "",
     message: "",
@@ -47,10 +46,7 @@ export default function CareersPage() {
     formData.append("firstName", formState.firstName);
     formData.append("lastName", formState.lastName);
     formData.append("email", formState.email);
-    formData.append(
-      "phone",
-      `${formState.contactPrefix} ${formState.contactNumber}`,
-    );
+    formData.append("phone", ` ${formState.contactNumber}`);
     formData.append("job", formState.jobTitle);
     formData.append("message", formState.message);
 
@@ -236,26 +232,19 @@ export default function CareersPage() {
                     Contact Number <span className="text-red-500">*</span>
                   </label>
                   <div className="flex border border-slate-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-red-200 focus-within:border-red-400 transition-all shadow-inner">
-                    <div className="flex items-center gap-2 px-4 bg-slate-100 border-r border-slate-200 text-sm font-medium text-slate-600">
-                      <FlagIcon />
-                      <span>{formState.contactPrefix}</span>
-                    </div>
+                    {/* Humne prefix wala div yahan se hata diya hai */}
                     <input
                       type="tel"
                       name="contactNumber"
                       value={formState.contactNumber}
                       onChange={handleInputChange}
-                      placeholder="301 2345678"
+                      placeholder="Phone Number"
                       pattern="[0-9]*"
                       required
                       className="flex-1 px-5 py-3.5 border-none focus:ring-0 text-sm transition-all"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 mt-2 pl-1">
-                    Example: 301 1122331
-                  </p>
                 </div>
-
                 {/* Job Title */}
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
